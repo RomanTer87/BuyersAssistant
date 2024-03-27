@@ -101,6 +101,7 @@
 			this.cbProductsGroupInStock.Name = "cbProductsGroupInStock";
 			this.cbProductsGroupInStock.Size = new System.Drawing.Size(424, 21);
 			this.cbProductsGroupInStock.TabIndex = 0;
+			this.cbProductsGroupInStock.SelectedIndexChanged += new System.EventHandler(this.cbProductsGroupInStock_SelectedIndexChanged);
 			// 
 			// tabPageSeller
 			// 

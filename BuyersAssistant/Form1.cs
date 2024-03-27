@@ -27,7 +27,8 @@ namespace BuyersAssistant
 			connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
 			connection = new SqlConnection(connectionString);
 			LoadProductsGroupToComboBox();
-			SelectAllProducts();
+			//SelectAllProducts();
+			SelectProducts();
 		}
 		void LoadProductsGroupToComboBox()
 		{
@@ -42,24 +43,53 @@ namespace BuyersAssistant
 			reader.Close();
 			connection.Close();
 		}
-		void SelectAllProducts()
+//		void SelectAllProducts()
+//		{
+//			string commandLine = @"
+//SELECT 
+//	products_name, products_group_name, quantity_in_stock, cost 
+//FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.products_group_id";
+//			SqlCommand cmd = new SqlCommand(commandLine, connection);
+//			connection.Open();
+//			reader = cmd.ExecuteReader();
+//			table = new DataTable();
+//			for(int i=0;i<reader.FieldCount;i++)
+//			{
+//				table.Columns.Add(reader.GetName(i));
+//			}
+//			while (reader.Read())
+//			{
+//				DataRow row = table.NewRow();
+//				for(int i=0;i< reader.FieldCount;i++)
+//				{
+//					row[i] = reader[i];
+//				}
+//				table.Rows.Add(row);
+//			}
+//			dgvProductsInStock.DataSource = table;
+//			reader.Close();
+//			connection.Close();
+//		}
+
+		void SelectProducts(string products_group = "")
 		{
 			string commandLine = @"
 SELECT 
 	products_name, products_group_name, quantity_in_stock, cost 
 FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.products_group_id";
+			if (products_group.Length != 0) commandLine += $" WHERE [products_group]=(SELECT products_group_id FROM ProductsGroup WHERE products_group_name='{products_group}')";
 			SqlCommand cmd = new SqlCommand(commandLine, connection);
 			connection.Open();
 			reader = cmd.ExecuteReader();
 			table = new DataTable();
-			for(int i=0;i<reader.FieldCount;i++)
+			for (int i = 0; i < reader.FieldCount; i++)
 			{
 				table.Columns.Add(reader.GetName(i));
 			}
 			while (reader.Read())
 			{
 				DataRow row = table.NewRow();
-				for(int i=0;i< reader.FieldCount;i++)
+				for (int i = 0; i < reader.FieldCount; i++)
 				{
 					row[i] = reader[i];
 				}
@@ -70,5 +100,9 @@ FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.produc
 			connection.Close();
 		}
 
+		private void cbProductsGroupInStock_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			SelectProducts(cbProductsGroupInStock.SelectedItem.ToString());
+		}
 	}
 }
