@@ -97,6 +97,7 @@ FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.produc
 				//dgvShoppingCart.Rows.Add(newRow);
 				tableCarts.Rows.Add(newRow);
 			}
+		
 		}
 	}
 }
