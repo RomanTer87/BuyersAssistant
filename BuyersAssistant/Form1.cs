@@ -17,7 +17,8 @@ namespace BuyersAssistant
 	{
 		string connectionString;
 		SqlConnection connection;
-		DataTable table;
+		DataTable tableStock;
+		DataTable tableCarts;
 		SqlDataReader reader;
 
 		public Form1()
@@ -27,7 +28,6 @@ namespace BuyersAssistant
 			connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
 			connection = new SqlConnection(connectionString);
 			LoadProductsGroupToComboBox();
-			//SelectAllProducts();
 			SelectProducts();
 		}
 		void LoadProductsGroupToComboBox()
@@ -43,33 +43,6 @@ namespace BuyersAssistant
 			reader.Close();
 			connection.Close();
 		}
-//		void SelectAllProducts()
-//		{
-//			string commandLine = @"
-//SELECT 
-//	products_name, products_group_name, quantity_in_stock, cost 
-//FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.products_group_id";
-//			SqlCommand cmd = new SqlCommand(commandLine, connection);
-//			connection.Open();
-//			reader = cmd.ExecuteReader();
-//			table = new DataTable();
-//			for(int i=0;i<reader.FieldCount;i++)
-//			{
-//				table.Columns.Add(reader.GetName(i));
-//			}
-//			while (reader.Read())
-//			{
-//				DataRow row = table.NewRow();
-//				for(int i=0;i< reader.FieldCount;i++)
-//				{
-//					row[i] = reader[i];
-//				}
-//				table.Rows.Add(row);
-//			}
-//			dgvProductsInStock.DataSource = table;
-//			reader.Close();
-//			connection.Close();
-//		}
 
 		void SelectProducts(string products_group = "")
 		{
@@ -81,24 +54,28 @@ FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.produc
 			SqlCommand cmd = new SqlCommand(commandLine, connection);
 			connection.Open();
 			reader = cmd.ExecuteReader();
-			table = new DataTable();
+			tableStock = new DataTable();
+			tableCarts= new DataTable();
 			for (int i = 0; i < reader.FieldCount; i++)
 			{
-				table.Columns.Add(reader.GetName(i));
+				tableStock.Columns.Add(reader.GetName(i));
+				tableCarts.Columns.Add(reader.GetName(i));
 			}
 			while (reader.Read())
 			{
-				DataRow row = table.NewRow();
+				DataRow row = tableStock.NewRow();
 				for (int i = 0; i < reader.FieldCount; i++)
 				{
 					row[i] = reader[i];
 				}
-				table.Rows.Add(row);
+				tableStock.Rows.Add(row);
 			}
-			dgvProductsInStock.DataSource = table;
+			dgvProductsInStock.DataSource = tableStock;
+			dgvShoppingCart.DataSource= tableCarts;
 			reader.Close();
 			connection.Close();
 		}
+
 
 		private void cbProductsGroupInStock_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -110,12 +87,15 @@ FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.produc
 			DataGridViewSelectedRowCollection rows = dgvProductsInStock.SelectedRows;
 			foreach(DataGridViewRow row in rows)
 			{
-				DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+				//DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+				DataRow newRow = tableCarts.NewRow();
 				for(int i=0;i<row.Cells.Count;i++)
 				{
-					newRow.Cells[i].Value = row.Cells[i].Value;
+					newRow[i] = row.Cells[i].Value;
+					//newRow.Cells[i].Value = row.Cells[i].Value;
 				}
-				dgvShoppingCart.Rows.Add(newRow);
+				//dgvShoppingCart.Rows.Add(newRow);
+				tableCarts.Rows.Add(newRow);
 			}
 		}
 	}
