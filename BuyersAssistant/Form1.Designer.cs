@@ -31,21 +31,21 @@
 			this.components = new System.ComponentModel.Container();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageClients = new System.Windows.Forms.TabPage();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
+			this.labelShoppingCart = new System.Windows.Forms.Label();
+			this.dgvShoppingCart = new System.Windows.Forms.DataGridView();
+			this.btnAddProductInCarts = new System.Windows.Forms.Button();
+			this.labelProductsList = new System.Windows.Forms.Label();
 			this.labelProductsCategory = new System.Windows.Forms.Label();
 			this.dgvProductsInStock = new System.Windows.Forms.DataGridView();
 			this.cbProductsGroupInStock = new System.Windows.Forms.ComboBox();
 			this.tabPageSeller = new System.Windows.Forms.TabPage();
-			this.labelProductsList = new System.Windows.Forms.Label();
-			this.btnAddProductInCarts = new System.Windows.Forms.Button();
-			this.dgvShoppingCart = new System.Windows.Forms.DataGridView();
-			this.labelShoppingCart = new System.Windows.Forms.Label();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPageClients.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgvProductsInStock)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvShoppingCart)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvProductsInStock)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -76,6 +76,60 @@
 			this.tabPageClients.Size = new System.Drawing.Size(1298, 505);
 			this.tabPageClients.TabIndex = 0;
 			this.tabPageClients.Text = "Client";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(725, 183);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(49, 13);
+			this.label2.TabIndex = 8;
+			this.label2.Text = "======>";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(725, 84);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(49, 13);
+			this.label1.TabIndex = 7;
+			this.label1.Text = "======>";
+			// 
+			// labelShoppingCart
+			// 
+			this.labelShoppingCart.AutoSize = true;
+			this.labelShoppingCart.Location = new System.Drawing.Point(805, 51);
+			this.labelShoppingCart.Name = "labelShoppingCart";
+			this.labelShoppingCart.Size = new System.Drawing.Size(114, 13);
+			this.labelShoppingCart.TabIndex = 6;
+			this.labelShoppingCart.Text = "Корзина покупателя:";
+			// 
+			// dgvShoppingCart
+			// 
+			this.dgvShoppingCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvShoppingCart.Location = new System.Drawing.Point(805, 71);
+			this.dgvShoppingCart.Name = "dgvShoppingCart";
+			this.dgvShoppingCart.Size = new System.Drawing.Size(475, 414);
+			this.dgvShoppingCart.TabIndex = 5;
+			// 
+			// btnAddProductInCarts
+			// 
+			this.btnAddProductInCarts.Location = new System.Drawing.Point(709, 100);
+			this.btnAddProductInCarts.Name = "btnAddProductInCarts";
+			this.btnAddProductInCarts.Size = new System.Drawing.Size(75, 80);
+			this.btnAddProductInCarts.TabIndex = 4;
+			this.btnAddProductInCarts.Text = "Добавить товар в корзину";
+			this.btnAddProductInCarts.UseVisualStyleBackColor = true;
+			this.btnAddProductInCarts.Click += new System.EventHandler(this.btnAddProductInCarts_Click);
+			// 
+			// labelProductsList
+			// 
+			this.labelProductsList.AutoSize = true;
+			this.labelProductsList.Location = new System.Drawing.Point(7, 52);
+			this.labelProductsList.Name = "labelProductsList";
+			this.labelProductsList.Size = new System.Drawing.Size(91, 13);
+			this.labelProductsList.TabIndex = 3;
+			this.labelProductsList.Text = "Список товаров:";
 			// 
 			// labelProductsCategory
 			// 
@@ -113,63 +167,10 @@
 			this.tabPageSeller.TabIndex = 1;
 			this.tabPageSeller.Text = "Seller";
 			// 
-			// labelProductsList
-			// 
-			this.labelProductsList.AutoSize = true;
-			this.labelProductsList.Location = new System.Drawing.Point(7, 52);
-			this.labelProductsList.Name = "labelProductsList";
-			this.labelProductsList.Size = new System.Drawing.Size(91, 13);
-			this.labelProductsList.TabIndex = 3;
-			this.labelProductsList.Text = "Список товаров:";
-			// 
-			// btnAddProductInCarts
-			// 
-			this.btnAddProductInCarts.Location = new System.Drawing.Point(709, 100);
-			this.btnAddProductInCarts.Name = "btnAddProductInCarts";
-			this.btnAddProductInCarts.Size = new System.Drawing.Size(75, 80);
-			this.btnAddProductInCarts.TabIndex = 4;
-			this.btnAddProductInCarts.Text = "Добавить товар в корзину";
-			this.btnAddProductInCarts.UseVisualStyleBackColor = true;
-			// 
-			// dgvShoppingCart
-			// 
-			this.dgvShoppingCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvShoppingCart.Location = new System.Drawing.Point(805, 71);
-			this.dgvShoppingCart.Name = "dgvShoppingCart";
-			this.dgvShoppingCart.Size = new System.Drawing.Size(475, 414);
-			this.dgvShoppingCart.TabIndex = 5;
-			// 
-			// labelShoppingCart
-			// 
-			this.labelShoppingCart.AutoSize = true;
-			this.labelShoppingCart.Location = new System.Drawing.Point(805, 51);
-			this.labelShoppingCart.Name = "labelShoppingCart";
-			this.labelShoppingCart.Size = new System.Drawing.Size(114, 13);
-			this.labelShoppingCart.TabIndex = 6;
-			this.labelShoppingCart.Text = "Корзина покупателя:";
-			// 
 			// notifyIcon1
 			// 
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(725, 84);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(49, 13);
-			this.label1.TabIndex = 7;
-			this.label1.Text = "======>";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(725, 183);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(49, 13);
-			this.label2.TabIndex = 8;
-			this.label2.Text = "======>";
 			// 
 			// Form1
 			// 
@@ -182,8 +183,8 @@
 			this.tabControl1.ResumeLayout(false);
 			this.tabPageClients.ResumeLayout(false);
 			this.tabPageClients.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgvProductsInStock)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dgvShoppingCart)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvProductsInStock)).EndInit();
 			this.ResumeLayout(false);
 
 		}

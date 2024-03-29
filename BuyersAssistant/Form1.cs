@@ -104,5 +104,19 @@ FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.produc
 		{
 			SelectProducts(cbProductsGroupInStock.SelectedItem.ToString());
 		}
+
+		private void btnAddProductInCarts_Click(object sender, EventArgs e)
+		{
+			DataGridViewSelectedRowCollection rows = dgvProductsInStock.SelectedRows;
+			foreach(DataGridViewRow row in rows)
+			{
+				DataGridViewRow newRow = (DataGridViewRow)row.Clone();
+				for(int i=0;i<row.Cells.Count;i++)
+				{
+					newRow.Cells[i].Value = row.Cells[i].Value;
+				}
+				dgvShoppingCart.Rows.Add(newRow);
+			}
+		}
 	}
 }
