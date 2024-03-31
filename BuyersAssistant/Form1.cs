@@ -48,7 +48,7 @@ namespace BuyersAssistant
 		{
 			string commandLine = @"
 SELECT 
-	products_name, products_group_name, quantity_in_stock, cost 
+	products_id, products_name, products_group_name, quantity_in_stock, cost 
 FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.products_group_id";
 			if (products_group.Length != 0) commandLine += $" WHERE [products_group]=(SELECT products_group_id FROM ProductsGroup WHERE products_group_name='{products_group}')";
 			SqlCommand cmd = new SqlCommand(commandLine, connection);
@@ -87,17 +87,39 @@ FROM Products JOIN ProductsGroup ON Products.products_group=ProductsGroup.produc
 			DataGridViewSelectedRowCollection rows = dgvProductsInStock.SelectedRows;
 			foreach(DataGridViewRow row in rows)
 			{
-				//DataGridViewRow newRow = (DataGridViewRow)row.Clone();
 				DataRow newRow = tableCarts.NewRow();
 				for(int i=0;i<row.Cells.Count;i++)
 				{
 					newRow[i] = row.Cells[i].Value;
-					//newRow.Cells[i].Value = row.Cells[i].Value;
 				}
-				//dgvShoppingCart.Rows.Add(newRow);
 				tableCarts.Rows.Add(newRow);
 			}
+			//var sqlQuery = "UPDATE Products SET quantity_in_stock = quantity_in_stock - 1";
+
+			//using(var connection = new SqlConnection(connectionString))
+			//{
+			//	connection.Open();
+			//	var command = new SqlCommand(sqlQuery, connection);
+			//	int addRowsCount = command.ExecuteNonQuery();
+			//	Console.WriteLine("Обновлено строк: {0}", addRowsCount);
+			//}
+
+			/////////////////////////////
+			string commandLine = $@"UPDATE Products SET quantity_in_stock = quantity_in_stock-1
+WHERE [products_id]='" + Convert.ToInt32(dgvProductsInStock[0, dgvProductsInStock.CurrentCell.RowIndex].Value) + "'";
+			//WHERE [quantity_in_stock] = '" + Convert.ToInt32(dgvProductsInStock[2, dgvProductsInStock.CurrentCell.RowIndex].Value)+"'";
+			SqlCommand cmd = new SqlCommand(commandLine, connection);
+		connection.Open();
+		cmd.ExecuteNonQuery();
 		
+		connection.Close();
+		}
+
+
+		private void btnDeleteProductFromCarts_Click(object sender, EventArgs e)
+		{
+			int rowIndex = dgvShoppingCart.CurrentCell.RowIndex;
+			dgvShoppingCart.Rows.RemoveAt(rowIndex);
 		}
 	}
 }

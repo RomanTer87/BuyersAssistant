@@ -42,6 +42,7 @@
 			this.cbProductsGroupInStock = new System.Windows.Forms.ComboBox();
 			this.tabPageSeller = new System.Windows.Forms.TabPage();
 			this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+			this.btnDeleteProductFromCarts = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPageClients.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvShoppingCart)).BeginInit();
@@ -61,6 +62,7 @@
 			// tabPageClients
 			// 
 			this.tabPageClients.BackColor = System.Drawing.SystemColors.Control;
+			this.tabPageClients.Controls.Add(this.btnDeleteProductFromCarts);
 			this.tabPageClients.Controls.Add(this.label2);
 			this.tabPageClients.Controls.Add(this.label1);
 			this.tabPageClients.Controls.Add(this.labelShoppingCart);
@@ -80,7 +82,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(725, 183);
+			this.label2.Location = new System.Drawing.Point(667, 183);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(49, 13);
 			this.label2.TabIndex = 8;
@@ -89,7 +91,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(725, 84);
+			this.label1.Location = new System.Drawing.Point(667, 84);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(49, 13);
 			this.label1.TabIndex = 7;
@@ -98,7 +100,7 @@
 			// labelShoppingCart
 			// 
 			this.labelShoppingCart.AutoSize = true;
-			this.labelShoppingCart.Location = new System.Drawing.Point(805, 51);
+			this.labelShoppingCart.Location = new System.Drawing.Point(747, 51);
 			this.labelShoppingCart.Name = "labelShoppingCart";
 			this.labelShoppingCart.Size = new System.Drawing.Size(114, 13);
 			this.labelShoppingCart.TabIndex = 6;
@@ -107,14 +109,15 @@
 			// dgvShoppingCart
 			// 
 			this.dgvShoppingCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvShoppingCart.Location = new System.Drawing.Point(805, 71);
+			this.dgvShoppingCart.Location = new System.Drawing.Point(747, 71);
 			this.dgvShoppingCart.Name = "dgvShoppingCart";
-			this.dgvShoppingCart.Size = new System.Drawing.Size(475, 414);
+			this.dgvShoppingCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvShoppingCart.Size = new System.Drawing.Size(530, 414);
 			this.dgvShoppingCart.TabIndex = 5;
 			// 
 			// btnAddProductInCarts
 			// 
-			this.btnAddProductInCarts.Location = new System.Drawing.Point(709, 100);
+			this.btnAddProductInCarts.Location = new System.Drawing.Point(651, 100);
 			this.btnAddProductInCarts.Name = "btnAddProductInCarts";
 			this.btnAddProductInCarts.Size = new System.Drawing.Size(75, 80);
 			this.btnAddProductInCarts.TabIndex = 4;
@@ -146,7 +149,7 @@
 			this.dgvProductsInStock.Location = new System.Drawing.Point(7, 71);
 			this.dgvProductsInStock.Name = "dgvProductsInStock";
 			this.dgvProductsInStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvProductsInStock.Size = new System.Drawing.Size(683, 414);
+			this.dgvProductsInStock.Size = new System.Drawing.Size(627, 414);
 			this.dgvProductsInStock.TabIndex = 1;
 			// 
 			// cbProductsGroupInStock
@@ -173,11 +176,21 @@
 			this.notifyIcon1.Text = "notifyIcon1";
 			this.notifyIcon1.Visible = true;
 			// 
+			// btnDeleteProductFromCarts
+			// 
+			this.btnDeleteProductFromCarts.Location = new System.Drawing.Point(651, 239);
+			this.btnDeleteProductFromCarts.Name = "btnDeleteProductFromCarts";
+			this.btnDeleteProductFromCarts.Size = new System.Drawing.Size(75, 80);
+			this.btnDeleteProductFromCarts.TabIndex = 9;
+			this.btnDeleteProductFromCarts.Text = "Удалить товар из корзины";
+			this.btnDeleteProductFromCarts.UseVisualStyleBackColor = true;
+			this.btnDeleteProductFromCarts.Click += new System.EventHandler(this.btnDeleteProductFromCarts_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1331, 556);
+			this.ClientSize = new System.Drawing.Size(1339, 556);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "Form1";
 			this.Text = "Form1";
@@ -205,6 +218,7 @@
 		private System.Windows.Forms.DataGridView dgvShoppingCart;
 		private System.Windows.Forms.Button btnAddProductInCarts;
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
+		private System.Windows.Forms.Button btnDeleteProductFromCarts;
 	}
 }
 
