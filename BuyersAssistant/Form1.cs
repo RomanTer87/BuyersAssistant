@@ -111,8 +111,10 @@ WHERE [products_id]='" + Convert.ToInt32(dgvProductsInStock[0, dgvProductsInStoc
 			SqlCommand cmd = new SqlCommand(commandLine, connection);
 		connection.Open();
 		cmd.ExecuteNonQuery();
-		
 		connection.Close();
+
+			//делаем подсчет количества товаров
+			
 		}
 
 
